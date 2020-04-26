@@ -1,3 +1,0 @@
-100000, Mary, John, 19920
-100001, Josh, Smith, 0
-100002, Jose, Dominguez, 10080
