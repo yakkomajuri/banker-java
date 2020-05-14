@@ -74,7 +74,7 @@ public class BankAccount {
      */
 	public String details() {
 		return Integer.toString(accNo) + " - " + first + " " + last + " - $" + balance;
-    }
+    	}
 	
 	/**
 	* Returns list of all transactions involving account. Returns null if no history
@@ -83,8 +83,8 @@ public class BankAccount {
 	*/
 	public List<Transaction> history() {
 		if (getTransactionHistory().size() != 0) {
-            return getTransactionHistory();
-        }
+            		return getTransactionHistory();
+        	}
 		return null;
 	}
 	
@@ -97,19 +97,19 @@ public class BankAccount {
 	*/
 	public boolean processTransaction(Transaction transaction) {
 		if (transaction.getSender().getAccNo() == accNo) {
-            if (balance >= transaction.getAmount()) {
-                balance = balance - transaction.getAmount();
-                transactionHistory.add(transaction);
-                return true;
-            } else {
-                System.out.println("insufficient funds");
-                return false;
-            }
-        } else if (transaction.getReceiver().getAccNo() == accNo) {
-            balance += transaction.getAmount();
-            transactionHistory.add(transaction);
-            return true;
-        }
+            		if (balance >= transaction.getAmount()) {
+                		balance = balance - transaction.getAmount();
+                		transactionHistory.add(transaction);
+                		return true;
+            		} else {
+                		System.out.println("insufficient funds");
+                		return false;
+           		}
+        	} else if (transaction.getReceiver().getAccNo() == accNo) {
+            		balance += transaction.getAmount();
+            		transactionHistory.add(transaction);
+            		return true;
+        	}
 		return false;
 	}
     
@@ -123,15 +123,15 @@ public class BankAccount {
 	* @return 	the list of transactions
 	*/
 	public List<Transaction> outgoing() {
-        List<Transaction> outgoingTransactions = new ArrayList<Transaction>();
+        	List<Transaction> outgoingTransactions = new ArrayList<Transaction>();
 		for (int i = 0; i<transactionHistory.size(); i++) {
-            if (transactionHistory.get(i).getSender().getAccNo() == accNo) {
-                outgoingTransactions.add(transactionHistory.get(i));
-            }
-        }
-        if (outgoingTransactions.size() == 0) {
-            return null;
-        }
+            		if (transactionHistory.get(i).getSender().getAccNo() == accNo) {
+                		outgoingTransactions.add(transactionHistory.get(i));
+            		}
+        	}
+        	if (outgoingTransactions.size() == 0) {
+            		return null;
+       		}
 		return outgoingTransactions;
 	}
 	
@@ -141,15 +141,15 @@ public class BankAccount {
 	* @return	the list of transactions
 	*/
 	public List<Transaction> incoming() {
-        List<Transaction> incomingTransactions = new ArrayList<Transaction>();
+        	List<Transaction> incomingTransactions = new ArrayList<Transaction>();
 		for (int i = 0; i<transactionHistory.size(); i++) {
-            if (transactionHistory.get(i).getReceiver().getAccNo() == accNo) {
-                incomingTransactions.add(transactionHistory.get(i));
-            }
-        }
-        if (incomingTransactions.size() == 0) {
-            return null;
-        }
+            		if (transactionHistory.get(i).getReceiver().getAccNo() == accNo) {
+                		incomingTransactions.add(transactionHistory.get(i));
+            		}
+        	}
+        	if (incomingTransactions.size() == 0) {
+            		return null;
+        	}
 		return incomingTransactions;
 	}
 	
@@ -160,12 +160,12 @@ public class BankAccount {
 	* @param last		the new surname
 	*/
 	public void rename(String first, String last) {
-        if (first == null || last == null) {
-            System.out.println("failure");
-            return;
-        }
-        this.first = first;
-        this.last = last;
+        	if (first == null || last == null) {
+            		System.out.println("failure");
+            		return;
+        	}
+        	this.first = first;
+        	this.last = last;
 	}
 	
 	/**
@@ -175,15 +175,15 @@ public class BankAccount {
 	* @return			the largest balance
 	*/
 	public static int findMax(List<BankAccount> accounts) {
-        if (accounts == null || accounts.size() == 0) {
-            System.out.println("no accounts");
+        	if (accounts == null || accounts.size() == 0) {
+            		System.out.println("no accounts");
 			return -1;
-        }
-        int max = 0;
-        for (int i = 0; i<accounts.size(); i++) {
-            if (accounts.get(i).getBalance() > max) {
-                max = accounts.get(i).getBalance();
-            }
+        	}
+        	int max = 0;
+        	for (int i = 0; i<accounts.size(); i++) {
+            		if (accounts.get(i).getBalance() > max) {
+               	 		max = accounts.get(i).getBalance();
+            		}
         }
 		return max;
 	}
@@ -195,15 +195,15 @@ public class BankAccount {
 	* @return			the smallest balance
 	*/
 	public static int findMin(List<BankAccount> accounts) {
-        if (accounts == null || accounts.size() == 0) {
-            System.out.println("no accounts");
+        	if (accounts == null || accounts.size() == 0) {
+            		System.out.println("no accounts");
 			return -1;
-        }
-        List<Integer> sortedBalances = new ArrayList<Integer>();
-        for (int i = 0; i<accounts.size(); i++) {
-            sortedBalances.add(accounts.get(i).getBalance());
-        }
-        Collections.sort(sortedBalances);
+        	}
+        	List<Integer> sortedBalances = new ArrayList<Integer>();
+        	for (int i = 0; i<accounts.size(); i++) {
+            	sortedBalances.add(accounts.get(i).getBalance());
+        	}
+        	Collections.sort(sortedBalances);
 		return sortedBalances.get(0);
 	}
 	
@@ -214,11 +214,11 @@ public class BankAccount {
 	* @return			the average balance
 	*/
 	public static int mean(List<BankAccount> accounts) {
-        if (accounts == null || accounts.size() == 0) {
-            System.out.println("no accounts");
+        	if (accounts == null || accounts.size() == 0) {
+           	 	System.out.println("no accounts");
 			return -1;
-        }
-        int total = totalBalance(accounts);
+        	}
+        	int total = totalBalance(accounts);
 		return total/accounts.size();
 	}
 	
@@ -229,19 +229,19 @@ public class BankAccount {
 	* @return			the median balance
 	*/
 	public static int median(List<BankAccount> accounts) {
-        if (accounts == null || accounts.size() == 0) {
-            System.out.println("no accounts");
+        	if (accounts == null || accounts.size() == 0) {
+            		System.out.println("no accounts");
 			return -1;
-        }
-        List<Integer> sortedBalances = new ArrayList<Integer>();
-        for (int i = 0; i<accounts.size(); i++) {
-            sortedBalances.add(accounts.get(i).getBalance());
-        }
-        Collections.sort(sortedBalances);
-        int middle = (sortedBalances.size()-1)/2;
-        if (sortedBalances.size() == 2) {
-            return (sortedBalances.get(0) + sortedBalances.get(1))/2;
-        }
+        	}
+        	List<Integer> sortedBalances = new ArrayList<Integer>();
+        	for (int i = 0; i<accounts.size(); i++) {
+            		sortedBalances.add(accounts.get(i).getBalance());
+        	}
+        	Collections.sort(sortedBalances);
+        	int middle = (sortedBalances.size()-1)/2;
+        	if (sortedBalances.size() == 2) {
+            		return (sortedBalances.get(0) + sortedBalances.get(1))/2;
+        	}
 		return sortedBalances.get(middle);
 	}
 	
@@ -252,16 +252,16 @@ public class BankAccount {
 	* @return			the total balance
 	*/
 	public static int totalBalance(List<BankAccount> accounts) {
-        if (accounts == null || accounts.size() == 0) {
-            System.out.println("no accounts");
+        	if (accounts == null || accounts.size() == 0) {
+            		System.out.println("no accounts");
 			return -1;
-        }
-        int total = 0;
+        	}
+        	int total = 0;
 		for (int i = 0; i<accounts.size(); i++) {
-            total += accounts.get(i).getBalance();
-        }
+            		total += accounts.get(i).getBalance();
+        	}
 		return total;
-    }
+    	}
     
 
 }
