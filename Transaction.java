@@ -57,8 +57,9 @@ public class Transaction {
         boolean valid = true;
         String prevHash = null;
         for (int i = 1; i <= transactions.size(); i++) {
-            Transaction t = transactions.get(i-1);
-            String checksum = generateHash(i, t.getSender().getAccNo(), t.getReceiver().getAccNo(), t.getAmount(), prevHash);
+            Transaction t = transactions.get(i - 1);
+            String checksum = generateHash(i, t.getSender().getAccNo(), t.getReceiver().getAccNo(), t.getAmount(),
+                    prevHash);
             String recordedHash = t.getHash();
             prevHash = checksum;
             if (Integer.parseInt(checksum) != Integer.parseInt(recordedHash)) {
@@ -66,10 +67,11 @@ public class Transaction {
                 break;
             }
         }
-        return valid; 
+        return valid;
     }
-    /**&& 
-     * Returns the hash code for a transaction.
+
+    /**
+     * && Returns the hash code for a transaction.
      *
      * @param id            the ID of the transaction
      * @param senderAccNo   the account number of the sender
@@ -80,7 +82,8 @@ public class Transaction {
      */
     public static String generateHash(int id, int senderAccNo, int receiverAccNo, int amount, String prevHash) {
         String combined = id + "" + senderAccNo + "" + receiverAccNo + "" + amount + "" + prevHash;
-        // System.out.printf("%d %d %d %d %s %s\n", id, senderAccNo, receiverAccNo, amount, prevHash, combined.hashCode());
+        // System.out.printf("%d %d %d %d %s %s\n", id, senderAccNo, receiverAccNo,
+        // amount, prevHash, combined.hashCode());
         return combined.hashCode() + "";
     }
 
